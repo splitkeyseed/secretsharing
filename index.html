@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                width: 100%;
+                padding: 0px;
+                margin: 0px;
+                font-family: sans-serif;
+                color: #282828;
+                background-color: #fafafa;
+            }
+            .page {
+                max-width: 21cm;
+                background-color: white;
+            }
+            .h1 {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                color: #000000;
+            }
+            .onePxContent {
+                height: 1px;
+                font-size: 1px;
+            }
+            .largeFont {
+                font-size: large;
+            }
+            .italicGreyFont {
+                color: grey;
+                font-style: italic;
+            }
+            .mainElementWhite {
+                border:1px solid lightgrey; 
+                padding: 8px; 
+                background-color: #ffffff;
+            }
+            .mainElementLightgreen {
+                border:1px solid lightgrey; 
+                padding: 8px; 
+                background-color: rgb(233, 241, 233);
+            }
+            .spacingMainElements {
+
+                margin-top: 20px;
+                margin-left: 20px;
+                margin-right: 20px;
+                margin-bottom: 0px;
+            }
+            .hideLinkDiv {
+                width: 100%;
+                text-align: right;
+                font-size: medium;
+            }
+            .inputButton {
+                padding: 4px;
+                padding-top: 5px;
+                font-size: larger;
+                font-weight: bold;
+                width: 100%;
+            }
+            .inputTitle {
+                font-size: larger;
+                font-weight: bold;
+            }
+
+
+            /* Used after loaded app */
+            @media print {
+                body * {
+                    display: none;
+                }
+                #printCanvas, #printCanvas * {
+                    display: block;
+                }
+            }
+            /* Removes url, title, timestamp and page number from print */
+            @page { size: auto;  margin: 0mm; }
+            .participantShare {
+                page-break-before: always;
+                padding-top: 0px;
+                margin-top: 0px;
+            }
+            .inputElement {
+                padding: 4px;
+                padding-top: 6px;
+                font-size: medium;
+                box-sizing: border-box;
+            }
+            .inputElement:focus {
+                padding: 4px;
+                padding-top: 6px;
+                font-size: medium;
+                box-sizing: border-box;
+                background-color: lightyellow;
+            }
+            .inputTextArea {
+                padding: 4px;
+                padding-top: 6px;
+                font-size: medium;
+                width:100%;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .inputTextArea:focus {
+                padding: 4px;
+                padding-top: 6px;
+                font-size: medium;
+                width:100%;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                background-color: lightyellow;
+            }
+            .showTextFont {
+                color: lightgrey;
+            }
+            a.blueLink:link { color:blue; }
+            a.blueLink:visited { color: blue; }
+            a.blueLink:hover { color: blue; }
+            a.blueLink:active { color: blue; }
+            a:link { color: #282828; }
+            a:visited { color: #282828; }
+            a:hover { color: #282828; }
+            a:active { color: #282828; }
+            .disclaimerOverflowDiv {
+                overflow-y: auto; 
+                height: 140px;
+                margin-top: 8px;
+            }
+            .disclaimerSign {
+                background-color: yellow;
+                text-align: center;
+                width: 15%;
+                font-size: 375%;
+                min-width: 40px;
+            }
+            .stepTitle {
+                font-size: x-large;
+                font-weight: bold;
+                color: #000000;
+            }
+            .subTitle {
+                font-size: medium;
+                font-weight: bold;
+            }
+            .printTitle {
+                font-size: x-large;
+                font-weight: bold;
+                text-decoration-line: underline;
+                color: #000000;
+            }
+            .monospace {
+                font-family:'Courier New', Courier, monospace; 
+            }
+            .mainElementLightblue {
+                border:1px solid lightgrey; 
+                padding: 8px; 
+                background-color: rgb(234, 240, 243);
+            }
+            .mainElementLightgreen {
+                border:1px solid lightgrey; 
+                padding: 8px; 
+                background-color: rgb(233, 241, 233);
+            }
+            .mainElementLightgrey {
+                border:1px solid lightgrey; 
+                padding: 8px; 
+                background-color: #F5F5F5;
+            }
+
+        </style>
+        <title>Simple secret sharing (Splitting) with pen & paper fallback recovery</title>
+        <script type="text/javascript">
+
+            function appendScript(src) {
+                let head = document.getElementsByTagName('head')[0];
+                let script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = src;
+                head.appendChild(script);
+            }
+
+            function loadSecretSharingWebApp() {
+                /**
+                 * Load proprietary and copyright protected secret sharing web app.
+                 * Web app source code is appended as inline javascript code so that the
+                 * entire app can be saved for offline use in a single html file. Saving
+                 * the app for offline use is also only allowed for non-commercial purposes
+                 * in agreement with the disclaimers.
+                 **/
+                appendScript("http://splitkeyseed/atwebpages.com/secretsharingapp.js");
+            }
+
+
+        </script>
+    </head>
+    <body>
+        <div class="page">
+            <div class="onePxContent">&nbsp;</div>
+            <div class="spacingMainElements largeFont">
+                <h1 class="h1">Simple secret sharing (splitting) with pen & paper fallback recovery</h1>
+                <div id="descriptionDiv" class="largeFont">
+                    <div>&nbsp;</div>
+                    This repository provides a simple <i>t</i> of <i>n</i> threshold secret sharing scheme for up to 9
+                    participants. The secret can be revealed by a specified minimum number of participants (the threshold).<br>
+                    <br>
+                    The secret owner (aka dealer) can split a secret into secret shares. The shares are create using the encryption technic
+                    Random Substitution Cipher. The shares are issued in recovery sets of shares. The individual shares do not
+                    reveal the secret. The owner of the secret then delivers the shares to the participants for safe storage.<br>
+                    <br>
+                    The secret can later be recovered by combining a complete recovery set of shares. Combining shares can be
+                    done electronically or alternatively manually by using pen and paper.<br>
+                    <br>
+                    For ease of use a web app has also been created. Once the web app is launched it can be saved locally and
+                    used offline. The offline usage capability can ensure that the app cannot transmit your secret elsewhere.
+                    When the app is permanently offline the need to trust that the web app will not steal secret data can be
+                    mitigated.
+                    <div>&nbsp;</div>
+                    <div id="launchAppDiv" class="mainElementLightgreen">
+                        <span>
+                            <b>Note:</b> The web app is loaded into this page from another external host. The web app is
+                            proprietary and is <u>not</u> licensed under the same license as the secret sharing code
+                            repository that is hosted <a href="https://github.com/splitkeyseed/secretsharing">here</a> on Github. The web app can be used for non-commercial purpose according to the disclaimer
+                            that is required to be accepted once the web app is launched.
+                        </span>
+                        <div>&nbsp;</div>
+                        <input type="button" id="" class="inputButton" value="Launch Secret Sharing App" onclick="loadSecretSharingWebApp()"></input>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div id="desriptionDiv2" class="mainElementWhite">
+                        <b>Create & distribute secret shares</b><br>
+                        Using the web app all the needed shares are easily created and distributed such that 
+                        any threshold combination of participants can combine their shares from a common share set 
+                        and recover the secret.<br>
+                        <br>
+                        Therefore every participant will have one share in all the recovery share sets that the
+                        participant is included in.<br>
+                        <br>
+                        Participants are identified by the upper case characters A-I. Recovery share sets are named using
+                        participant characters in alphabetical order. For example "BDE" is the recovery set including
+                        participant "B", "D" and "E". Individual shares consist of a list of as many numbers as there are
+                        characters in the secret.<br> 
+                        <span class="italicGreyFont">(step is completed using the web app)</span><br>
+                        <br>
+                        <b>Deliver shares to participants</b><br>
+                        After share issuing and distribution the secret owner must deliver the shares securely
+                        to the participants. The shares can be delivered electronically or they can be printed 
+                        and distributed physically.<br>
+                        <span class="italicGreyFont">(step is completed manually by the secret owner)</span><br>
+                        <br>
+                        <b>Recover secret</b><br>
+                        The secret can be recovered by combining all the shares in any given recovery share set.<br>
+                        <br>
+                        When using the web app for recovery the shares must be typed or copy/pasted into the recovery
+                        form in the requested order. For recovery of the secret using pen and paper see explanation in the
+                        document "Secret Owner Information" that is issued together with the shares.<br>
+                        <span class="italicGreyFont">(step is completed using the app or manually by using pen and paper)</span><br>
+                        <!-- Add hide link on app launch -->
+                        <div id="hideDescriptionDiv" class="hideLinkDiv" style="display: none;"><a href="javascript:hideDescription();">hide</a></div>
+                    </div>
+                </div>
+            </div>
+            <div id="descriptionShowDiv" class="spacingMainElements mainElementWhite" style="display: none;">
+                <table class="showTextFont" style="width: 100%;">
+                    <tr>
+                        <td><span style="font-size: large;"><b>Secret Sharing Description</b></span></td>
+                        <td style="text-align: right;"><a href="javascript:showDescription();">show</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="pageTop">
+
+            </div>
+        </div>
+        <div id="printCanvas" class="page" style="display: none;">
+        
+        
+        </div>
+        <div class="page">
+            <div id="pageBottom">
+
+            </div>
+
+            
+        </div> 
+
+
+
+
+        <div>&nbsp;</div>
+    </body>
+</html>
