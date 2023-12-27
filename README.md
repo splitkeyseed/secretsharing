@@ -1,4 +1,4 @@
-# Simple Javascript secret sharing (splitting) with possible pen and paper fallback recovery
+# Simple JavaScript secret sharing (splitting) with possible pen and paper fallback recovery
 ## Motivation
 When considering security of private electronic assets like website accounts it is best practice to use two-factor authentication (2FA). However when using 2FA the weak point in the security setup often becomes the recovery process of the 2FA method.
 
