@@ -14,7 +14,7 @@ When more than two shares are needed one of the shares are treated as a yet anot
 
 This code repository (https://github.com/splitkeyseed/secretsharing) includes the core mechanisms for splitting a secret into encrypted shares and recovering the secret again (if not pen and paper is used for recovery).
 
-There also exists a proprietary web app (that is not licensed under the same license as the repository) where the secret sharing scheme can be utilized. The web app can be launched from https://splitkeyseed.github.io/secretsharing but is hosted and launched from an external resource.
+There also exists a proprietary web app (that is not licensed under the same license as the repository) where the secret sharing scheme can be utilized. The web app can be accessed from https://splitkeyseed.github.io/secretsharing but is hosted and launched from an external resource.
 
 The project is a prototype and is in a pre-release (fragile) state. The code has not been thoroughly tested and must be considered insecure and not exempt from errors. As such, any input data cannot be guaranteed to remain private, we strongly recommend not to input any sensitive or valuable data and only use the code when permanently offline and disconnected from any network and any insecure or online devices.
 
